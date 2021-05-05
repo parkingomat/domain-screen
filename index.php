@@ -10,7 +10,7 @@
 //index.php
 
 $screen_shot_image = '';
-
+/*
 if (isset($_POST["screen_shot"])) {
 //    $domain = $_POST["url"];
     $domain = $_POST["domain"];
@@ -30,7 +30,7 @@ if (isset($_POST["screen_shot"])) {
 
     $screen_shot_image = "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
 }
-
+*/
 if (isset($_POST["multi"])) {
 
     load_func([
@@ -42,7 +42,9 @@ if (isset($_POST["multi"])) {
 
         $domains = $_POST["domains"];
 
-        $domain_list = explode("\n", str_replace("\r", "", $domains));
+//        $domain_list = explode("\n", str_replace("\r", "", $domains));
+//        $domain_list = explode(PHP_EOL, $domains);
+        $domain_list = array_values(array_filter(explode(PHP_EOL, $domains)));
 
         if (empty($domain_list)) {
             throw new Exception("domain list is empty");
@@ -58,13 +60,12 @@ if (isset($_POST["multi"])) {
             $data = file_get_contents($url_screen);
             $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-            $screen_shot_image = "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
-
-            return $screen_shot_image;
+            return "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
         });
 
+    var_dump($domain_nameserver_list);
 
-        $screen_shot_image =  implode("<br>", $domain_nameserver_list);
+        $screen_shot_image = implode("<br>", $domain_nameserver_list);
     });
 }
 
@@ -94,15 +95,15 @@ if (isset($_POST["multi"])) {
             <label>Enter Domain name</label>
             <!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
             <!--                   value="http://softreck.com"/>-->
-            <input type="domain" name="domain" class="input-lg" required autocomplete="on"
-                   value="<?php echo $_POST["domain"] ?>"/>
+<!--            <input type="domain" name="domain" class="input-lg" required autocomplete="on"-->
+<!--                   value="--><?php //echo $_POST["domain"] ?><!--"/>-->
 
             <textarea name="domains" cols="55">softreck.pl
-                softreck.com
+softreck.com
             </textarea>
         </div>
         <br/>
-        <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>
+<!--        <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>-->
         <input type="submit" name="multi" value="Take a Screenshot" class="btn btn-info btn-lg"/>
     </form>
     <br/>
