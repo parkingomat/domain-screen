@@ -3,18 +3,20 @@ Screenshoots for domain list, domain-screen
 
 php read
 
-# domain-dns.parkingomat.pl
++ [Check screen for domain list - info about project](https://domain-screen.parkingomat.pl/)
 
-+ [Check DNS for domain list - info about project](https://domain-dns.parkingomat.pl/)
-
-+ [Check DNS for domain list - GET request](https://domain-dns.parkingomat.pl/index.php)
++ [Check screen for domain list - GET request](https://domain-screen.parkingomat.pl/index.php)
 
 
 ## github
 
-https://github.com/parkingomat/domain-dns
+https://github.com/parkingomat/domain-screen
 
-    git clone https://github.com/parkingomat/domain-dns.git
+GIT
+
+https://github.com/parkingomat/domain-screen.git
+
+    git clone https://github.com/parkingomat/domain-screen.git
 
 
 # project URL-s
@@ -23,7 +25,7 @@ https://github.com/parkingomat/domain-dns
 
 domain parkingomat.pl
 
-[https://domain-dns.parkingomat.pl/index.php](https://domain-dns.parkingomat.pl/index.php)
+[https://domain-screen.parkingomat.pl/index.php](https://domain-screen.parkingomat.pl/index.php)
 
 localhost
 
@@ -40,4 +42,4 @@ localhost
 
 domain parkingomat.pl
 
-[https://domain-dns.parkingomat.pl/get.php?domain=apiprogram.com](https://domain-dns.parkingomat.pl/get.php?domain=apiprogram.com)
+[https://domain-screen.parkingomat.pl/get.php?domain=apiprogram.com](https://domain-screen.parkingomat.pl/get.php?domain=apiprogram.com)
