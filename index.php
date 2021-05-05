@@ -58,9 +58,8 @@ if (isset($_POST["screen_shot"])) {
 <!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
 <!--                   value="http://softreck.com"/>-->
             <input type="domain" name="domain" class="input-lg" required autocomplete="on"
-                   value="softreck.com"/>
+                   value="<?php echo $_POST["domain"] ?>"/>
         </div>
-        <br/>
         <br/>
         <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>
     </form>
