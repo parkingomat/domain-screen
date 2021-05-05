@@ -31,6 +31,11 @@ if (isset($_POST["screen_shot"])) {
     $screen_shot_image = "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
 }
 */
+
+if(empty($_POST["domains"])){
+    $_POST["domains"] = "softreck.com";
+}
+
 if (isset($_POST["multi"])) {
     load_func([
         'https://php.letjson.com/let_json.php',
@@ -121,8 +126,7 @@ if (isset($_POST["multi"])) {
             <!--            <input type="domain" name="domain" class="input-lg" required autocomplete="on"-->
             <!--                   value="--><?php //echo $_POST["domain"] ?><!--"/>-->
 
-            <textarea name="domains" cols="55" rows="20">softreck.pl
-softreck.com</textarea>
+            <textarea name="domains" cols="55" rows="20"><?php echo $_POST["domains"] ?>></textarea>
         </div>
         <br/>
         <!--        <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>-->
