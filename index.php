@@ -45,12 +45,12 @@ if (isset($_POST["multi"])) {
     ], function () {
 
         $domains = $_POST["domains"];
-        // filter
-        $domains = str_replace("https://", "", $domains);
-        $domains = str_replace("http://", "", $domains);
-        $domains = str_replace("//", "", $domains);
-        $domains = str_replace("/", "", $domains);
-
+        // Clean URL
+        $domains = str_replace('"', "", $domains);
+        $domains = str_replace("'", "", $domains);
+        $domains = str_replace(" ", "", $domains);
+//        $domains = str_replace(",", "", $domains);
+//        $domains = str_replace(";", "", $domains);
 //        $domain_list = explode("\n", str_replace("\r", "", $domains));
 //        $domain_list = explode(PHP_EOL, $domains);
         $domains = trim($domains);
@@ -67,12 +67,27 @@ if (isset($_POST["multi"])) {
             throw new Exception("domain list is empty");
         }
 
-        $domain_nameserver_list = each_func($domain_list, function ($domain) {
+        $domain_nameserver_list = each_func($domain_list, function ($url) {
 
-            if (empty($domain)) return null;
+            if (empty($url)) return null;
 
-            $url_screen = "http://webscreen.pl:3000/png/{$domain}";
+            $url = rtrim($url, ' ');
+            $url = rtrim($url, ';');
+            $url = rtrim($url, ',');
+            $url = rtrim($url, '/');
 
+            if(!(strpos( $url, "http://" ) === 0) && !(strpos( $url, "https://" ) === 0)){
+                $url = "https://" . $url;
+            }
+
+//            if(!(strpos( $url, "https://" ) === 0)){
+//                $url = "https://" . $url
+//            }
+
+            $urle = urlencode($url);
+            $url_screen = "http://webscreen.pl:3000/url/{$urle}";
+//            var_dump($url_screen);
+//die;
 //            $type = pathinfo($url_screen, PATHINFO_EXTENSION);
 //            $data = file_get_contents($url_screen);
 //            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -80,7 +95,8 @@ if (isset($_POST["multi"])) {
 //    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
             return "
 <div>
-    <a href='$url_screen'>$domain</a>
+    SCREEN: <a href='$url_screen'> $url</a>
+    WEB: <a href='$url'> $url</a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
@@ -126,7 +142,7 @@ if (isset($_POST["multi"])) {
             <!--            <input type="domain" name="domain" class="input-lg" required autocomplete="on"-->
             <!--                   value="--><?php //echo $_POST["domain"] ?><!--"/>-->
 
-            <textarea name="domains" cols="55" rows="20"><?php echo $_POST["domains"] ?>></textarea>
+            <textarea name="domains" cols="55" rows="20"><?php echo $_POST["domains"] ?></textarea>
         </div>
         <br/>
         <!--        <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>-->
