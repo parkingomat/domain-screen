@@ -1,69 +1,77 @@
 <?php
+//
+//use Monolog\Utils;
+//use Psr\Log\LogLevel;
 
-use Monolog\Utils;
-use Psr\Log\LogLevel;
+//require("../load_func.php");
+//require("../libs.php");
 
-require("../load_func.php");
-require("../libs.php");
 
-try {
-    # Function Async
-    //let_func("https://letjson.github.io/php/let_json.php", "let_json", "../../plesk.json", function ($objs) {
-    load_func(['https://letjson.github.io/php/let_json.php', 'https://php.defjson.com/def_json.php'], function () {
-        $objs = let_json("../../plesk.json");
+//index.php
 
-        $domains_per_host = [];
-        foreach ($objs as $obj) {
-            $client = new \PleskX\Api\Client($obj->ip);
-            $client->setCredentials($obj->login, $obj->password);
-            //    $domains = getDomains($client, $host);
-            $list = $client->webspace()->getAll();
-            foreach ($list as $item) {
-                $domains_per_host[$obj->host][] = $item->name;
-            }
+$screen_shot_image = '';
+
+if (isset($_POST["screen_shot"])) {
+    $domain = $_POST["url"];
+//    $screen_shot_json_data = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$url&screenshot=true");
+//    $screen_shot_json_data = file_get_contents('https://s.wordpress.com/mshots/v1/' . urlencode($url) . '?w=730&h=300');
+    $url_screen = "http://webscreen.pl:3000/png/{$domain}";
+
+//    urlencode($url)
+
+//    $screen_shot_result = json_decode($screen_shot_json_data, true);
+//    $screen_shot = $screen_shot_result['screenshot']['data'];
+//    $screen_shot = str_replace(array('_', '-'), array('/', '+'), $screen_shot);
+
+    $type = pathinfo($url_screen, PATHINFO_EXTENSION);
+    $data = file_get_contents($url_screen);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+    $screen_shot_image = "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
+}
+
+?>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>How to capture website screen shot from url in php</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        .box {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
         }
+    </style>
+</head>
+<body>
+<div class="container box">
+    <br/>
+    <h2 align="center">How to capture website screen shot from url in php</h2><br/>
+    <form method="post">
+        <div class="form-group">
+            <label>Enter URL</label>
+            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"
+                   value="softreck.com"/>
+        </div>
+        <br/>
+        <br/>
+        <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>
+    </form>
+    <br/>
+    <?php
 
-        header('Content-Type: application/json');
-        def_json('host-domains.json', $domains_per_host, function ($data) {
-            echo $data;
-            exit();
-        });
+    echo $screen_shot_image;
 
-    });
+    ?>
+</div>
+<div style="clear:both"></div>
+<br/>
 
-} catch (exception $e) {
-// Set HTTP response status code to: 500 - Internal Server Error
-    http_response_code(500);
-}
-
-$level = LogLevel::ERROR;
-foreach ($this->uncaughtExceptionLevelMap as $class => $candidate) {
-    if ($e instanceof $class) {
-        $level = $candidate;
-        break;
-    }
-}
-
-$this->logger->log(
-    $level,
-    sprintf('Uncaught Exception %s: "%s" at %s line %s', Utils::getClass($e), $e->getMessage(), $e->getFile(), $e->getLine()),
-    ['exception' => $e]
-);
-
-if ($this->previousExceptionHandler) {
-    ($this->previousExceptionHandler)($e);
-}
-
-if (!headers_sent() && !ini_get('display_errors')) {
-    http_response_code(500);
-}
-
-exit(255);
-
-
-function getClass(object $object): string
-{
-    $class = \get_class($object);
-
-    return 'c' === $class[0] && 0 === strpos($class, "class@anonymous\0") ? get_parent_class($class).'@anonymous' : $class;
-}
+<br/>
+<br/>
+<br/>
+</body>
+</html>
