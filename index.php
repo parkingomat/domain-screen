@@ -31,6 +31,43 @@ if (isset($_POST["screen_shot"])) {
     $screen_shot_image = "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
 }
 
+if (isset($_POST["multi"])) {
+
+    load_func([
+        'https://php.letjson.com/let_json.php',
+        'https://php.defjson.com/def_json.php',
+        'https://php.eachfunc.com/each_func.php',
+
+    ], function () {
+
+        $domains = $_POST["domains"];
+
+        $domain_list = explode("\n", str_replace("\r", "", $domains));
+
+        if (empty($domain_list)) {
+            throw new Exception("domain list is empty");
+        }
+
+        $domain_nameserver_list = each_func($domain_list, function ($domain) {
+
+
+            if (empty($domain)) return null;
+
+            $url_screen = "http://webscreen.pl:3000/png/{$domain}";
+            $type = pathinfo($url_screen, PATHINFO_EXTENSION);
+            $data = file_get_contents($url_screen);
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+            $screen_shot_image = "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
+
+            return $screen_shot_image;
+        });
+
+
+        $screen_shot_image =  implode("<br>", $domain_nameserver_list);
+    });
+}
+
 ?>
 <html>
 <head>
@@ -53,15 +90,20 @@ if (isset($_POST["screen_shot"])) {
     <h2 align="center">How to capture website screen shot from url in php</h2><br/>
     <form method="post">
         <div class="form-group">
-<!--            <label>Enter URL</label>-->
+            <!--            <label>Enter URL</label>-->
             <label>Enter Domain name</label>
-<!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
-<!--                   value="http://softreck.com"/>-->
+            <!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
+            <!--                   value="http://softreck.com"/>-->
             <input type="domain" name="domain" class="input-lg" required autocomplete="on"
                    value="<?php echo $_POST["domain"] ?>"/>
+
+            <textarea name="domains" cols="55">softreck.pl
+                softreck.com
+            </textarea>
         </div>
         <br/>
         <input type="submit" name="screen_shot" value="Take a Screenshot" class="btn btn-info btn-lg"/>
+        <input type="submit" name="multi" value="Take a Screenshot" class="btn btn-info btn-lg"/>
     </form>
     <br/>
     <?php
