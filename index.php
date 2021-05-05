@@ -68,9 +68,9 @@ if (isset($_POST["multi"])) {
 
             $url_screen = "http://webscreen.pl:3000/png/{$domain}";
 
-            $type = pathinfo($url_screen, PATHINFO_EXTENSION);
-            $data = file_get_contents($url_screen);
-            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+//            $type = pathinfo($url_screen, PATHINFO_EXTENSION);
+//            $data = file_get_contents($url_screen);
+//            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
 //    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
             return "
