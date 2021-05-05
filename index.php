@@ -72,11 +72,11 @@ if (isset($_POST["multi"])) {
             $data = file_get_contents($url_screen);
             $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-
+//    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
             return "
 <div>
     <a href='$url_screen'>$domain</a>
-    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
+    <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
         });
