@@ -12,7 +12,8 @@
 $screen_shot_image = '';
 
 if (isset($_POST["screen_shot"])) {
-    $domain = $_POST["url"];
+//    $domain = $_POST["url"];
+    $domain = $_POST["domain"];
 //    $screen_shot_json_data = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$url&screenshot=true");
 //    $screen_shot_json_data = file_get_contents('https://s.wordpress.com/mshots/v1/' . urlencode($url) . '?w=730&h=300');
     $url_screen = "http://webscreen.pl:3000/png/{$domain}";
@@ -53,7 +54,9 @@ if (isset($_POST["screen_shot"])) {
     <form method="post">
         <div class="form-group">
             <label>Enter URL</label>
-            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"
+<!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
+<!--                   value="http://softreck.com"/>-->
+            <input type="domain" name="domain" class="form-control input-lg" required autocomplete="off"
                    value="softreck.com"/>
         </div>
         <br/>
