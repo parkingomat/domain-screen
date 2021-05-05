@@ -67,11 +67,19 @@ if (isset($_POST["multi"])) {
             if (empty($domain)) return null;
 
             $url_screen = "http://webscreen.pl:3000/png/{$domain}";
+
             $type = pathinfo($url_screen, PATHINFO_EXTENSION);
             $data = file_get_contents($url_screen);
             $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-            return "<img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>";
+
+            return "
+<div>
+    <a href='$url_screen'>$domain</a>
+    <p>$url_screen</p>
+    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
+</div>
+            ";
         });
 
         global $screen_shot_image;
@@ -84,6 +92,7 @@ if (isset($_POST["multi"])) {
 }
 
 ?>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -102,11 +111,12 @@ if (isset($_POST["multi"])) {
 <body>
 <div class="container box">
     <br/>
-    <h2 align="center">capture website screen shot from domain name</h2><br/>
+    <h2 align="center">capture website screen shot</h2><br/>
     <form method="post">
         <div class="form-group">
             <!--            <label>Enter URL</label>-->
             <label>Enter Domain name</label>
+            <br>
             <!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
             <!--                   value="http://softreck.com"/>-->
             <!--            <input type="domain" name="domain" class="input-lg" required autocomplete="on"-->
