@@ -53,10 +53,11 @@ if (isset($_POST["screen_shot"])) {
     <h2 align="center">How to capture website screen shot from url in php</h2><br/>
     <form method="post">
         <div class="form-group">
-            <label>Enter URL</label>
+<!--            <label>Enter URL</label>-->
+            <label>Enter Domain name</label>
 <!--            <input type="url" name="url" class="form-control input-lg" required autocomplete="off"-->
 <!--                   value="http://softreck.com"/>-->
-            <input type="domain" name="domain" class="form-control input-lg" required autocomplete="off"
+            <input type="domain" name="domain" class="input-lg" required autocomplete="on"
                    value="softreck.com"/>
         </div>
         <br/>
