@@ -76,7 +76,6 @@ if (isset($_POST["multi"])) {
             return "
 <div>
     <a href='$url_screen'>$domain</a>
-    <p>$url_screen</p>
     <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
