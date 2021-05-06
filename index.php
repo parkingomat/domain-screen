@@ -121,6 +121,12 @@ if (isset($_POST["multi"])) {
 function getDomain($url){
     $parse = parse_url($url);
     $domain = $parse['host'];
+    $domain = rtrim($domain, ' ');
+    $domain = rtrim($domain, '"');
+    $domain = rtrim($domain, ';');
+    $domain = rtrim($domain, ',');
+    $domain = rtrim($domain, '/');
+
     return $domain;
 }
 
