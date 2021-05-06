@@ -33,7 +33,7 @@ if (isset($_POST["screen_shot"])) {
 }
 */
 
-if(empty($_POST["domains"])){
+if (empty($_POST["domains"])) {
     $_POST["domains"] = "softreck.com";
 }
 
@@ -78,7 +78,7 @@ if (isset($_POST["multi"])) {
             $url = rtrim($url, ',');
             $url = rtrim($url, '/');
 
-            if(!(strpos( $url, "http://" ) === 0) && !(strpos( $url, "https://" ) === 0)){
+            if (!(strpos($url, "http://") === 0) && !(strpos($url, "https://") === 0)) {
                 $url = "https://" . $url;
             }
 
@@ -103,7 +103,7 @@ if (isset($_POST["multi"])) {
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
     <br>
-    DNS: <a href='$domain'> $domain </a>
+    DNS: <a class='domain' href='$domain'> $domain </a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
@@ -118,20 +118,22 @@ if (isset($_POST["multi"])) {
     });
 }
 
-function getDomain($url){
+function getDomain($url)
+{
     $parse = parse_url($url);
     $domain = $parse['host'];
     $domain = rtrim($domain, ' ');
     $domain = rtrim($domain, '"');
     $domain = rtrim($domain, ';');
     $domain = rtrim($domain, ',');
-    $domain = rtrim($domain, '/');
+    $domain = rtrim($domain, '_');
 
     return $domain;
 }
 
 
-function getDNS($url){
+function getDNS($url)
+{
     // DNS-y
     $parse = parse_url($url);
     $domain = $parse['host'];
@@ -159,6 +161,7 @@ function getDNS($url){
             margin: 0 auto;
         }
     </style>
+
 </head>
 <body>
 <div class="container box">
@@ -193,5 +196,23 @@ function getDNS($url){
 <br/>
 <br/>
 <br/>
+
+<script>
+    $('a.domain').each(function () {
+        var value = $(this).attr('href');
+        // $(this).attr('href', value.replace('#/',''));
+        var domain = $(this).attr('href');
+        console.log(domain);
+        var url = "https://domain-dns.parkingomat.pl/get.php?domain=" + domain;
+        var jqxhr = $.ajax(url)
+            .done(function (result) {
+                console.log(result);
+                // alert( "success" );
+                // $(this).html(result.nameserver);
+            });
+
+    });
+</script>
+
 </body>
 </html>
