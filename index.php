@@ -9,6 +9,7 @@ require("load_func.php");
 
 //index.php
 $screen_shot_image = '';
+// http://localhost:8080/index.php
 
 /*
 if (isset($_POST["screen_shot"])) {
@@ -49,7 +50,7 @@ if (isset($_POST["multi"])) {
         $domains = str_replace('"', "", $domains);
         $domains = str_replace("'", "", $domains);
         $domains = str_replace(" ", "", $domains);
-//        $domains = str_replace(",", "", $domains);
+        $domains = str_replace(",", "", $domains);
 //        $domains = str_replace(";", "", $domains);
 //        $domain_list = explode("\n", str_replace("\r", "", $domains));
 //        $domain_list = explode(PHP_EOL, $domains);
@@ -72,6 +73,7 @@ if (isset($_POST["multi"])) {
             if (empty($url)) return null;
 
             $url = rtrim($url, ' ');
+            $url = rtrim($url, '"');
             $url = rtrim($url, ';');
             $url = rtrim($url, ',');
             $url = rtrim($url, '/');
@@ -92,11 +94,19 @@ if (isset($_POST["multi"])) {
 //            $data = file_get_contents($url_screen);
 //            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
+            $parse = parse_url($url);
+            $domain = $parse['host'];
+            $dns_url = "https://domain-dns.parkingomat.pl/get.php?domain=" . $domain;
+//            $data = file_get_contents($dns_url);
+            $obj = let_json($dns_url);
+            var_dump($obj);
+            die;
 //    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
             return "
 <div>
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
+    DNS: <a href='$url'> $url</a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
