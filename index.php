@@ -214,6 +214,7 @@ function getDNS($url)
                 console.log(nameservers);
                 // alert( "success" );
                 atext.html( nameservers );
+                atext.addClass("active");
             });
     });
 </script>
@@ -221,6 +222,11 @@ function getDNS($url)
 <style>
     a.domain {
         color: gray;
+        text-decoration: none;
+    }
+
+    a.domain.active {
+        color: #222333;
         text-decoration: none;
     }
 </style>
