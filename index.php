@@ -103,7 +103,7 @@ if (isset($_POST["multi"])) {
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
     <br>
-    DNS: <a class='domain' href='$domain'> $domain </a>
+    DNS: <a class='domain' href='https://domain-dns.parkingomat.pl/get.php?domain=$domain'> $domain </a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
@@ -202,9 +202,9 @@ function getDNS($url)
         // var value = $(this).attr('href');
         // $(this).attr('href', value.replace('#/',''));
         var atext = $(this);
-        var domain = atext.attr('href');
-        console.log(domain);
-        var url = "https://domain-dns.parkingomat.pl/get.php?domain=" + domain;
+        var url = atext.attr('href');
+        // console.log(domain);
+        // var url = "https://domain-dns.parkingomat.pl/get.php?domain=" + domain;
         var jqxhr = $.ajax(url)
             .done(function (result) {
                 console.log(result);
