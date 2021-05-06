@@ -94,24 +94,13 @@ if (isset($_POST["multi"])) {
 //            $data = file_get_contents($url_screen);
 //            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-
-            // DNS-y
-            $parse = parse_url($url);
-            $domain = $parse['host'];
-            $dns_url = "https://domain-dns.parkingomat.pl/get.php?domain=" . $domain;
-//            $data = file_get_contents($dns_url);
-            $obj = file_get_contents($dns_url);
-            $json = json_decode($obj, false);
-            $dnsy = implode(" | ", $json->nameserver);
-
-
 //    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
             return "
 <div>
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
     <br>
-    DNS: <a href='$dns_url'> $dnsy</a>
+    DNS: <a href=''> getDNS($url)</a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
@@ -126,15 +115,27 @@ if (isset($_POST["multi"])) {
     });
 }
 
+function getDNS($url){
+    // DNS-y
+    $parse = parse_url($url);
+    $domain = $parse['host'];
+    $dns_url = "https://domain-dns.parkingomat.pl/get.php?domain=" . $domain;
+//            $data = file_get_contents($dns_url);
+    $obj = file_get_contents($dns_url);
+    $json = json_decode($obj, false);
+    $dnsy = implode(" | ", $json->nameserver);
+    return $dnsy;
+}
+
 ?>
 
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>How to capture website screen shot from url in php</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <style>
         .box {
             width: 100%;
