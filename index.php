@@ -218,5 +218,11 @@ function getDNS($url)
     });
 </script>
 
+<style>
+    a.domain {
+        color: gray;
+        text-decoration: none;
+    }
+</style>
 </body>
 </html>
