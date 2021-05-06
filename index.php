@@ -199,18 +199,22 @@ function getDNS($url)
 
 <script>
     $('a.domain').each(function () {
-        var value = $(this).attr('href');
+        // var value = $(this).attr('href');
         // $(this).attr('href', value.replace('#/',''));
-        var domain = $(this).attr('href');
+        var atext = $(this);
+        var domain = atext.attr('href');
         console.log(domain);
         var url = "https://domain-dns.parkingomat.pl/get.php?domain=" + domain;
         var jqxhr = $.ajax(url)
             .done(function (result) {
                 console.log(result);
+                console.log(atext);
+                // var nameservers = JSON.stringify(result.nameserver);
+                var nameservers = result.nameserver.join(", ");
+                console.log(nameservers);
                 // alert( "success" );
-                // $(this).html(result.nameserver);
+                atext.html( nameservers );
             });
-
     });
 </script>
 
