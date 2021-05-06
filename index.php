@@ -95,13 +95,13 @@ if (isset($_POST["multi"])) {
 //            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
 //    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
-            $dns = getDNS($url);
+            $dns[$urle] = getDNS($url);
             return "
 <div>
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
     <br>
-    DNS: <a href=''> $dns </a>
+    DNS: <a href=''> $dns[$urle] </a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
