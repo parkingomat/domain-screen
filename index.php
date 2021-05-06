@@ -94,19 +94,24 @@ if (isset($_POST["multi"])) {
 //            $data = file_get_contents($url_screen);
 //            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
+
+            // DNS-y
             $parse = parse_url($url);
             $domain = $parse['host'];
             $dns_url = "https://domain-dns.parkingomat.pl/get.php?domain=" . $domain;
 //            $data = file_get_contents($dns_url);
-            $obj = let_json($dns_url);
-            var_dump($obj);
-            die;
+            $obj = file_get_contents($dns_url);
+            $json = json_decode($obj, false);
+            $dnsy = implode(" | ", $json->nameserver);
+
+
 //    <img src=\"" . $base64 . "\" class='img-responsive img-thumbnail'/>
             return "
 <div>
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
-    DNS: <a href='$url'> $url</a>
+    <br>
+    DNS: <a href='$dns_url'> $dnsy</a>
     <img src=\"" . $url_screen . "\" class='img-responsive img-thumbnail'/>
 </div>
             ";
