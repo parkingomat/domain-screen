@@ -45,3 +45,12 @@ localhost
 domain parkingomat.pl
 
 [https://domain-screen.parkingomat.pl/get.php?domain=apiprogram.com](https://domain-screen.parkingomat.pl/get.php?domain=apiprogram.com)
+
+
+
+## GET REMOVE
+
+  http://webscreen.pl:3000/remove/png
+
+
+  http://webscreen.pl:3000/remove/txt
