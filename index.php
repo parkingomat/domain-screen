@@ -183,6 +183,38 @@ function getDNS($url)
     <h2 align="center">capture website screen shot</h2><br/>
     <form method="post">
         <div class="form-group">
+             <label for="registrar">Choose a registrar:</label>
+
+            <select name="registrar" id="registrar">
+            <option value="namecheap">namecheap</option>
+                
+            <option value="premium">premium</option>
+            <option value="aftermarket">aftermarket</option>
+            
+            </select> 
+         </div>
+         <div class="form-group">
+             <label for="nameserver">Choose a nameserver:</label>
+
+            <select name="nameserver" id="nameserver">
+            <option value="cloudflare">cloudflare</option>
+                
+            <option value="digitalocean">digitalocean</option>
+            
+            </select> 
+             
+         </div>
+         <div class="form-group">
+             <label for="server">Choose a server:</label>
+
+            <select name="server" id="server">
+            <option value="one">one</option>
+                
+            <option value="two">two</option>
+            
+            </select> 
+             
+         </div>
             <!--            <label>Enter URL</label>-->
             <label>Enter Domain name</label>
             <br>
