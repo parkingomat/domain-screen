@@ -107,18 +107,18 @@ if (isset($_POST["multi"])) {
 
             return "
  <br><div>
-    SCREEN: <a href='$url_screen'> $url</a>
-    WEB: <a href='$url'> $url</a>
+    SCREEN: <a href='$url_screen' target='_blank'> $url</a>
+    WEB: <a href='$url' target='_blank'> $url</a>
     <br>
-    DNS: <a class='domain' href='https://domain-dns.parkingomat.pl/get.php?domain=$domain'> $domain </a>
+    DNS: <a class='domain' href='https://domain-dns.parkingomat.pl/get.php?domain=$domain' target='_blank'> $domain </a>
     <br>
     REG: 
-    <a class='registrar' href='https://ap.www.namecheap.com/domains/domaincontrolpanel/$domain/domain'> NAMECHEAP </a>
-    <a class='registrar' href='https://premium.pl/ustawienia/$domain'> PREMIUM </a>
+    <a class='registrar' href='https://ap.www.namecheap.com/domains/domaincontrolpanel/$domain/domain' target='_blank'> NAMECHEAP </a>
+    <a class='registrar' href='https://premium.pl/ustawienia/$domain' target='_blank'> PREMIUM </a>
     
     REG-DNS:
-    <a class='registrar' href='https://premium.pl/domain/changens.html?name=$domain&type=domain'> PREMIUM </a>
-    <a class='registrar' href='https://www.aftermarket.pl/Domain/NS/?domain=$domain'> AFTERMARKET </a>
+    <a class='registrar' href='https://premium.pl/domain/changens.html?name=$domain&type=domain' target='_blank'> PREMIUM </a>
+    <a class='registrar' href='https://www.aftermarket.pl/Domain/NS/?domain=$domain' target='_blank'> AFTERMARKET </a>
     
     <br>
     <img src='$url_screen' class='img-responsive img-thumbnail' />
