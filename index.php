@@ -238,6 +238,7 @@ function getDNS($url)
     }
     iframe {
         height:300px;
+        width:600px;
     }
 </style>
 </body>
