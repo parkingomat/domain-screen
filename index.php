@@ -72,12 +72,17 @@ if (isset($_POST["multi"])) {
 
             if (empty($url)) return null;
 
+            $url = str_replace(PHP_EOL, '', $url);
             $url = rtrim($url, ' ');
             $url = rtrim($url, '"');
             $url = rtrim($url, ';');
             $url = rtrim($url, ',');
             $url = rtrim($url, '/');
 
+            
+            if (empty($url)) return null;
+            
+            
             if (!(strpos($url, "http://") === 0) && !(strpos($url, "https://") === 0)) {
                 $url = "https://" . $url;
             }
