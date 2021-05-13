@@ -106,11 +106,14 @@ if (isset($_POST["multi"])) {
             $domain = getDomain($url);
 
             return "
-<div>
+ <br><div>
     SCREEN: <a href='$url_screen'> $url</a>
     WEB: <a href='$url'> $url</a>
     <br>
     DNS: <a class='domain' href='https://domain-dns.parkingomat.pl/get.php?domain=$domain'> $domain </a>
+    <br>
+    REG: <a class='registrar' href='https://ap.www.namecheap.com/domains/domaincontrolpanel/$domain/domain'> NAMECHEAP </a>
+    
     <br>
     <img src='$url_screen' class='img-responsive img-thumbnail' />
     <br>
