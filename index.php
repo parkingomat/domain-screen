@@ -112,7 +112,13 @@ if (isset($_POST["multi"])) {
     <br>
     DNS: <a class='domain' href='https://domain-dns.parkingomat.pl/get.php?domain=$domain'> $domain </a>
     <br>
-    REG: <a class='registrar' href='https://ap.www.namecheap.com/domains/domaincontrolpanel/$domain/domain'> NAMECHEAP </a>
+    REG: 
+    <a class='registrar' href='https://ap.www.namecheap.com/domains/domaincontrolpanel/$domain/domain'> NAMECHEAP </a>
+    <a class='registrar' href='https://premium.pl/ustawienia/$domain'> PREMIUM </a>
+    
+    REG-DNS:
+    <a class='registrar' href='https://premium.pl/domain/changens.html?name=$domain&type=domain'> PREMIUM </a>
+    <a class='registrar' href='https://www.aftermarket.pl/Domain/NS/?domain=$domain'> AFTERMARKET </a>
     
     <br>
     <img src='$url_screen' class='img-responsive img-thumbnail' />
@@ -215,6 +221,7 @@ function getDNS($url)
             </select> 
              
          </div>
+        <div class="form-group">
             <!--            <label>Enter URL</label>-->
             <label>Enter Domain name</label>
             <br>
