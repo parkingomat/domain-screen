@@ -74,8 +74,8 @@ if (isset($_POST["multi"])) {
 
             //$url = str_replace(PHP_EOL, '', $url);
                 
-            $url = rtrim($url);
-            $url = rtrim($url, ' ');
+            $url = trim($url);
+            //$url = rtrim($url, ' ');
             $url = rtrim($url, '"');
             $url = rtrim($url, ';');
             $url = rtrim($url, ',');
