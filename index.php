@@ -105,9 +105,9 @@ if (isset($_POST["multi"])) {
     <br>
     DNS: <a class='domain' href='https://domain-dns.parkingomat.pl/get.php?domain=$domain'> $domain </a>
     <br>
-    <img src='$url_screen' class='img-responsive img-thumbnail' height='200' />
+    <img src='$url_screen' class='img-responsive img-thumbnail' />
     <br>
-    <iframe src='$url' height='200' width='300' title='$domain'></iframe> 
+    <iframe src='$url' title='$domain'></iframe> 
 </div>
             ";
         });
@@ -232,6 +232,12 @@ function getDNS($url)
     a.domain.active {
         color: #222333;
         text-decoration: none;
+    }
+    img.img-thumbnail {
+        height:300px;
+    }
+    iframe {
+        height:300px;
     }
 </style>
 </body>
