@@ -185,6 +185,8 @@ function getDNS($url)
 </head>
 <body>
 <div class="container box">
+    <a href="http://webscreen.pl:3000/remove/png" target='_blank'> remove png </a>
+     <a href="http://webscreen.pl:3000/remove/png" target='_blank'> remove txt </a>
     <br/>
     <h2 align="center">capture website screen shot</h2><br/>
     <form method="post">
