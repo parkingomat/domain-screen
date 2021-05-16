@@ -86,7 +86,7 @@ if (isset($_POST["multi"])) {
             
             
             if (!(strpos($url, "http://") === 0) && !(strpos($url, "https://") === 0)) {
-                $url = "http://" . $url;
+                $url = "https://" . $url;
             }
 
 //            if(!(strpos( $url, "https://" ) === 0)){
